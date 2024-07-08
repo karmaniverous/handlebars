@@ -18,7 +18,7 @@ This template...
 
 ## lodash & numeral
 
-This helper exposes the [Lodash](https://lodash.com/) and [Numeral.js](http://numeraljs.com/) libraries to your templates.
+These helpers expose the [Lodash](https://lodash.com/) and [Numeral.js](http://numeraljs.com/) libraries to your templates.
 
 Here's a combined example. If `amount = 1000000` then:
 
