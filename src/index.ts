@@ -1,1 +1,1 @@
-export { foo } from './foo';
+export { Handlebars } from './Handlebars';
