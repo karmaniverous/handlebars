@@ -32,7 +32,7 @@ renders:
 $10,000.00
 ```
 
-## terraform
+## json2tf
 
 Renders an object as a Terraform literal. For example:
 

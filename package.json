@@ -9,7 +9,7 @@
     "lodash": "^4.17.21",
     "numeral": "^2.0.6"
   },
-  "description": "A feature-rich NPM package template for TypeScript projects.",
+  "description": "Exposes Lodash & Numeral.js as Handlebars helpers, plus some other goodies.",
   "devDependencies": {
     "@eslint/js": "^9.6.0",
     "@rollup/plugin-alias": "^5.1.0",
@@ -66,16 +66,10 @@
   ],
   "homepage": "https://github.com/karmaniverous/handlebars#readme",
   "keywords": [
-    "chai",
-    "eslint",
-    "lefthook",
-    "mocha",
-    "npm",
-    "nyc",
-    "prettier",
-    "rollup",
-    "template",
-    "typescript"
+    "handlebars",
+    "lodash",
+    "numeraljs",
+    "terraform"
   ],
   "license": "BSD-3-Clause",
   "main": "dist/index.cjs",
