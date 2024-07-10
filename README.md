@@ -31,3 +31,7 @@ renders:
 ```html
 $10,000.00
 ```
+
+## terraform
+
+Renders an object as a Terraform literal.

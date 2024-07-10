@@ -45,4 +45,14 @@ describe('Handlebars', function () {
 
     expect(result).to.equal('$12.35');
   });
+
+  it('terraform', function () {
+    const template = '{{terraform "Output" "test" this}}';
+
+    const result = Handlebars.compile(template, { noEscape: true })(data);
+
+    expect(result).to.equal(
+      'output &tfgquot;test&tfgquot;{\namount = 1234.567\nanchorText = &tfgquot;anchor text&tfgquot;\nmerchantId = &tfgquot;abc123&tfgquot;\nuserId = &tfgquot;def456&tfgquot;\n}\n\n',
+    );
+  });
 });
