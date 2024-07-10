@@ -52,7 +52,7 @@ describe('Handlebars', function () {
     const result = Handlebars.compile(template, { noEscape: true })(data);
 
     expect(result).to.equal(
-      'output &tfgquot;test&tfgquot;{\namount = 1234.567\nanchorText = &tfgquot;anchor text&tfgquot;\nmerchantId = &tfgquot;abc123&tfgquot;\nuserId = &tfgquot;def456&tfgquot;\n}\n\n',
+      'output "test"{\namount = 1234.567\nanchorText = "anchor text"\nmerchantId = "abc123"\nuserId = "def456"\n}\n\n',
     );
   });
 });

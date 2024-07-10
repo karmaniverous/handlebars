@@ -80,7 +80,9 @@ Handlebars.registerHelper(
   'terraform',
   function (block: TerraformBlock, ...params: unknown[]) {
     // @ts-expect-error - unable to characterize constructor params with dynamic class name
-    return new TerraformGenerator[block](...params.slice(0, -1)).toTerraform();
+    return new TerraformGenerator[block](...params.slice(0, -1))
+      .toTerraform()
+      .replace(/&tfgquot;/g, '"');
   },
 );
 
