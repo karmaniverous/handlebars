@@ -49,10 +49,12 @@ describe('Handlebars', function () {
   it('terraform', function () {
     const template = '{{terraform "Output" "test" this}}';
 
+    data.extra = { a: [1, 2, { c: 'd' }] };
+
     const result = Handlebars.compile(template, { noEscape: true })(data);
 
     expect(result).to.equal(
-      'output "test"{\namount = 1234.567\nanchorText = "anchor text"\nmerchantId = "abc123"\nuserId = "def456"\n}\n\n',
+      'output "test"{\namount = 1234.567\nanchorText = "anchor text"\nmerchantId = "abc123"\nuserId = "def456"\nextra {\na = [\n1,\n2,\n{\nc = "d"\n}\n]\n}\n}\n\n',
     );
   });
 });
