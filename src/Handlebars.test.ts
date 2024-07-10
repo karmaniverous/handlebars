@@ -47,14 +47,34 @@ describe('Handlebars', function () {
   });
 
   it('terraform', function () {
-    const template = '{{terraform "Output" "test" this}}';
+    const template = `
+  output "config" { 
+    description = "Global config." 
+    value = {{json2tf (lodash "omit" this "templates" "templatesPath") 4 2}} 
+  }`;
 
     data.extra = { a: [1, 2, { c: 'd' }] };
 
     const result = Handlebars.compile(template, { noEscape: true })(data);
 
-    expect(result).to.equal(
-      'output "test"{\namount = 1234.567\nanchorText = "anchor text"\nmerchantId = "abc123"\nuserId = "def456"\nextra {\na = [\n1,\n2,\n{\nc = "d"\n}\n]\n}\n}\n\n',
-    );
+    expect(result).to.equal(`
+  output "config" { 
+    description = "Global config." 
+    value = {
+      amount = 1234.567
+      anchorText = "anchor text"
+      merchantId = "abc123"
+      userId = "def456"
+      extra = {
+        a = [
+          1,
+          2,
+          {
+            c = "d"
+          }
+        ]
+      }
+    } 
+  }`);
   });
 });

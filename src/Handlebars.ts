@@ -1,7 +1,7 @@
+import { json2tf } from '@karmaniverous/json2tf';
 import Handlebars from 'handlebars';
 import _ from 'lodash';
 import numeral, { Numeral } from 'numeral';
-import TerraformGenerator from 'terraform-generator';
 
 type ExtractMethodNames<T> = {
   [K in keyof T]: T[K] extends (...args: unknown[]) => unknown ? K : never;
@@ -61,28 +61,14 @@ Handlebars.registerHelper(
   },
 );
 
-type TerraformBlock =
-  | 'Backend'
-  | 'Comment'
-  | 'Data'
-  | 'Import'
-  | 'Locals'
-  | 'Module'
-  | 'Moved'
-  | 'Output'
-  | 'Provider'
-  | 'Provisioner'
-  | 'Removed'
-  | 'Resource'
-  | 'Variable';
+Handlebars.registerHelper('args2array', function (...args: unknown[]) {
+  return args.slice(0, -1);
+});
 
 Handlebars.registerHelper(
-  'terraform',
-  function (block: TerraformBlock, ...params: unknown[]) {
-    // @ts-expect-error - unable to characterize constructor params with dynamic class name
-    return new TerraformGenerator[block](...params.slice(0, -1))
-      .toTerraform()
-      .replace(/&tfgquot;/g, '"');
+  'json2tf',
+  function (value: unknown, offset: number, tabWidth: number) {
+    return json2tf(value, { offset, tabWidth });
   },
 );
 
