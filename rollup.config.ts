@@ -9,7 +9,7 @@ import dtsPlugin from 'rollup-plugin-dts';
 const outputPath = `dist`;
 
 const commonPlugins = [
-  commonjsPlugin(),
+  commonjsPlugin({ ignoreDynamicRequires: true }),
   jsonPlugin(),
   nodeResolve(),
   typescriptPlugin(),

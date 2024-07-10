@@ -1,3 +1,4 @@
+import { json2tf } from '@karmaniverous/json2tf';
 import Handlebars from 'handlebars';
 import _ from 'lodash';
 import numeral, { Numeral } from 'numeral';
@@ -55,8 +56,19 @@ Handlebars.registerHelper(
     value: unknown,
     ...params: unknown[]
   ) {
-    // @ts-expect-error - unable to characterize params with dynamc method name
+    // @ts-expect-error - unable to characterize params with dynamisc method name
     return _[fn](value, ...params.slice(0, -1)) as unknown;
+  },
+);
+
+Handlebars.registerHelper('args2array', function (...args: unknown[]) {
+  return args.slice(0, -1);
+});
+
+Handlebars.registerHelper(
+  'json2tf',
+  function (value: unknown, offset: number, tabWidth: number) {
+    return json2tf(value, { offset, tabWidth });
   },
 );
 

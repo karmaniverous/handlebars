@@ -31,3 +31,46 @@ renders:
 ```html
 $10,000.00
 ```
+
+## terraform
+
+Renders an object as a Terraform literal. For example:
+
+```ts
+import { Handlebars } from '@karmaniverous/handlebars';
+
+const data = {
+  amount: 1234.567,
+  anchorText: 'anchor text',
+  merchantId: 'abc123',
+  userId: 'def456',
+  extra: { a: [1, 2, { c: 'd' }] },
+};
+
+const template = `
+  output "config" { 
+    description = "Global config." 
+    value = {{json2tf (lodash "omit" this "merchantId" "userId") 4 4}} 
+  }`;
+
+console.log(Handlebars.compile(template, { noEscape: true })(data));
+
+/*
+    output "config" { 
+        description = "Global config." 
+        value = {
+            amount = 1234.567
+            anchorText = "anchor text"
+            extra = {
+                a = [
+                    1,
+                    2,
+                    {
+                        c = "d"
+                    }
+                ]
+            }
+        } 
+    }
+*/
+```

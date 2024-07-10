@@ -45,4 +45,36 @@ describe('Handlebars', function () {
 
     expect(result).to.equal('$12.35');
   });
+
+  it('terraform', function () {
+    const template = `
+  output "config" { 
+    description = "Global config." 
+    value = {{json2tf (lodash "omit" this "templates" "templatesPath") 4 2}} 
+  }`;
+
+    data.extra = { a: [1, 2, { c: 'd' }] };
+
+    const result = Handlebars.compile(template, { noEscape: true })(data);
+
+    expect(result).to.equal(`
+  output "config" { 
+    description = "Global config." 
+    value = {
+      amount = 1234.567
+      anchorText = "anchor text"
+      merchantId = "abc123"
+      userId = "def456"
+      extra = {
+        a = [
+          1,
+          2,
+          {
+            c = "d"
+          }
+        ]
+      }
+    } 
+  }`);
+  });
 });
