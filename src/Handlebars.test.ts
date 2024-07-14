@@ -46,6 +46,41 @@ describe('Handlebars', function () {
     expect(result).to.equal('$12.35');
   });
 
+  it('logic and', function () {
+    const template =
+      '{{#if (logic "and" true true true)}}true{{else}}false{{/if}}';
+
+    const result = Handlebars.compile(template)(data);
+
+    expect(result).to.equal('true');
+  });
+
+  it('logic or', function () {
+    const template =
+      '{{#if (logic "or" true true false)}}true{{else}}false{{/if}}';
+
+    const result = Handlebars.compile(template)(data);
+
+    expect(result).to.equal('true');
+  });
+
+  it('logic not', function () {
+    const template = '{{#if (logic "not" false)}}true{{else}}false{{/if}}';
+
+    const result = Handlebars.compile(template)(data);
+
+    expect(result).to.equal('true');
+  });
+
+  it('logic xor', function () {
+    const template =
+      '{{#if (logic "xor" true false false)}}true{{else}}false{{/if}}';
+
+    const result = Handlebars.compile(template)(data);
+
+    expect(result).to.equal('true');
+  });
+
   it('terraform', function () {
     const template = `
   output "config" { 

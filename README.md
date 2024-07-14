@@ -32,6 +32,19 @@ renders:
 $10,000.00
 ```
 
+## logic
+
+Performs logical operations on the arguments. For example, all of these return `true`:
+
+```handlebars
+{{#if (logic 'and' true true true)}}
+{{#if (logic 'or' true true false)}}
+{{#if (logic 'not' false)}}:
+{{#if (logic 'xor' true false false)}} (odd number of trues)
+```
+
+Supported operations are `and`, `or`, `not`, and `xor`.
+
 ## json2tf
 
 Renders an object as a Terraform literal. For example:

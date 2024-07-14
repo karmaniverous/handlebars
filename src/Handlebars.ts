@@ -44,7 +44,7 @@ Handlebars.registerHelper(
     value: unknown,
     ...params: unknown[]
   ) {
-    // @ts-expect-error - unable to characterize params with dynamc method name
+    // @ts-expect-error - unable to characterize params with dynamic method name
     return numeral(value)[fn](...params.slice(0, -1)) as unknown;
   },
 );
@@ -56,7 +56,7 @@ Handlebars.registerHelper(
     value: unknown,
     ...params: unknown[]
   ) {
-    // @ts-expect-error - unable to characterize params with dynamisc method name
+    // @ts-expect-error - unable to characterize params with dynamic method name
     return _[fn](value, ...params.slice(0, -1)) as unknown;
   },
 );
@@ -71,5 +71,24 @@ Handlebars.registerHelper(
     return json2tf(value, { offset, tabWidth });
   },
 );
+
+Handlebars.registerHelper('logic', function (op: string, ...args: unknown[]) {
+  if (!args.length) throw new Error('Missing locical operator!');
+
+  if (args.length === 1) throw new Error('Missing logical operand!');
+
+  switch (op) {
+    case 'and':
+      return args.slice(0, -1).every((arg) => !!arg);
+    case 'or':
+      return args.slice(0, -1).some((arg) => !!arg);
+    case 'not':
+      return !args[0];
+    case 'xor':
+      return args.slice(0, -1).reduce((result, arg) => result !== !!arg, false);
+    default:
+      throw new Error(`Unsupported operation: ${op}`);
+  }
+});
 
 export { Handlebars };
