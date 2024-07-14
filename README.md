@@ -43,7 +43,7 @@ Performs logical operations on the arguments. For example, all of these return `
 {{#if (logic 'xor' true false false)}} (odd number of trues)
 ```
 
-Supported operations are `and`, `or`, `not`, and `xor`.
+Parameters are evaluated for truthiness. Supported operations are `and`, `or`, `not`, and `xor`.
 
 ## json2tf
 
