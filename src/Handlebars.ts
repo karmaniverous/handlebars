@@ -65,6 +65,10 @@ Handlebars.registerHelper('args2array', function (...args: unknown[]) {
   return args.slice(0, -1);
 });
 
+Handlebars.registerHelper('params', function (...args: unknown[]) {
+  return args.slice(0, -1);
+});
+
 Handlebars.registerHelper(
   'json2tf',
   function (value: unknown, offset: number, tabWidth: number) {

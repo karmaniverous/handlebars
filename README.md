@@ -32,6 +32,14 @@ renders:
 $10,000.00
 ```
 
+## params
+
+This helper converts its arguments into an array. Very useful for Lodash functions that expect an array argument. For example:
+
+```handlebars
+{{lodash 'get' object (params 'a' 'b' 'c')}}
+```
+
 ## logic
 
 Performs logical operations on the arguments. For example, all of these return `true`:
