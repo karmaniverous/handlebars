@@ -15,6 +15,7 @@ describe('Handlebars', function () {
       anchorText: 'anchor text',
       merchantId: 'abc123',
       userId: 'def456',
+      falsy: false,
     };
   });
 
@@ -79,6 +80,24 @@ describe('Handlebars', function () {
     const result = Handlebars.compile(template)(data);
 
     expect(result).to.equal('true');
+  });
+
+  it('ifelse true', function () {
+    const template =
+      '{{#if (ifelse amount true false)}}true{{else}}false{{/if}}';
+
+    const result = Handlebars.compile(template)(data);
+
+    expect(result).to.equal('true');
+  });
+
+  it('ifelse false', function () {
+    const template =
+      '{{#if (ifelse falsy true false)}}true{{else}}false{{/if}}';
+
+    const result = Handlebars.compile(template)(data);
+
+    expect(result).to.equal('false');
   });
 
   it('terraform', function () {

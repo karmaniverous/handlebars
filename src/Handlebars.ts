@@ -95,4 +95,11 @@ Handlebars.registerHelper('logic', function (op: string, ...args: unknown[]) {
   }
 });
 
+Handlebars.registerHelper(
+  'ifelse',
+  function (condition: unknown, iftrue: unknown, iffalse: unknown) {
+    return condition ? iftrue : iffalse;
+  },
+);
+
 export { Handlebars };

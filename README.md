@@ -4,6 +4,12 @@ This repo adds a handful of very useful helpers to Handlebars.js.
 
 ## dataAnchor
 
+Renders an anchor tag with data attributes. Syntax:
+
+```handlebars
+{{dataAnchor '<anchor text>' '<data attribute 1>' '<value 1>' '<data attribute 2>' '<value 2>' ...}}
+```
+
 This template...
 
 ```handlebars
@@ -18,7 +24,12 @@ This template...
 
 ## lodash & numeral
 
-These helpers expose the [Lodash](https://lodash.com/) and [Numeral.js](http://numeraljs.com/) libraries to your templates.
+These helpers expose the [Lodash](https://lodash.com/) and [Numeral.js](http://numeraljs.com/) libraries to your templates. Syntax:
+
+```handlebars
+{{lodash '<function>' <arg1> <arg2> ...}}
+{{numeral '<function>' <arg1> <arg2> ...}}
+```
 
 Here's a combined example. If `amount = 1000000` then:
 
@@ -42,7 +53,13 @@ This helper converts its arguments into an array. Very useful for Lodash functio
 
 ## logic
 
-Performs logical operations on the arguments. For example, all of these return `true`:
+Performs logical operations on the arguments. Syntax:
+
+```handlebars
+{{logic '<operator>' <arg1> <arg2> ...}}
+```
+
+For example, all of these return `true`:
 
 ```handlebars
 {{#if (logic 'and' true true true)}}
@@ -53,9 +70,23 @@ Performs logical operations on the arguments. For example, all of these return `
 
 Parameters are evaluated for truthiness. Supported operations are `and`, `or`, `not`, and `xor`.
 
+## ifelse
+
+A ternary operator. Syntax:
+
+```handlebars
+{{ifelse <condition> <value if truthy> <value if falsy>}}
+```
+
 ## json2tf
 
-Renders an object as a Terraform literal. For example:
+Renders an object as a Terraform literal using [json2tf](https://github.com/karmaniverous/json2tf). The syntax is:
+
+```handlebars
+{{json2tf <object> [offset] [tabWidth]}}
+```
+
+For example:
 
 ```ts
 import { Handlebars } from '@karmaniverous/handlebars';
