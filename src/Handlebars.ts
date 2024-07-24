@@ -107,10 +107,9 @@ Handlebars.registerHelper(
   function (target: string, name: string, delimiter: unknown) {
     if (!name) throw new Error('Missing name!');
 
-    if (!_.isString(delimiter)) delimiter = '-';
-
     switch (target) {
       case 's3':
+        if (!_.isString(delimiter)) delimiter = '-';
         return name.toLowerCase().replace(/[^a-z0-9.-]+/g, delimiter as string);
       default:
         throw new Error(`Unsupported namify target: ${target}`);

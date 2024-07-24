@@ -132,10 +132,12 @@ console.log(Handlebars.compile(template, { noEscape: true })(data));
 Converts a string into a form valid for a particular target, substituting an optional delimiter for sequences of invalid characters. Syntax:
 
 ```handlebars
-{{namify '<target>' <input string> <delimiter>}}
+{{namify '<target>' <input string> [delimiter]}}
 ```
 
-If supplied, `delimiter` must be a single character. If not, it will default to a `target`-specific value. For example:
+If no `delimiter` is supplied, it will default to a `target`-specific value.
+
+For example:
 
 ```handlebars
 {{namify 's3' 'My Resource Name'}}
