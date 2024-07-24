@@ -126,3 +126,25 @@ console.log(Handlebars.compile(template, { noEscape: true })(data));
     }
 */
 ```
+
+## namify
+
+Converts a string into a form valid for a particular target, substituting an optional delimiter for sequences of invalid characters. Syntax:
+
+```handlebars
+{{namify '<target>' <input string> <delimiter>}}
+```
+
+If supplied, `delimiter` must be a single character. If not, it will default to a `target`-specific value. For example:
+
+```handlebars
+{{namify 's3' 'My Resource Name'}}
+
+# my-resource-name
+```
+
+These targets are currently available:
+
+| `target` | Description                                                                                     | default `delimiter` |
+| -------- | ----------------------------------------------------------------------------------------------- | ------------------- |
+| `s3`     | [S3 bucket names](https://docs.aws.amazon.com/AmazonS3/latest/userguide/bucketnamingrules.html) | `'-'`               |

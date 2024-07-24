@@ -132,4 +132,13 @@ describe('Handlebars', function () {
     } 
   }`);
   });
+
+  it('namify s3 invalid char', function () {
+    const template =
+      '{{namify "s3" "metastructure-001-shared_services-s3-access-log"}}';
+
+    const result = Handlebars.compile(template)(data);
+
+    expect(result).to.equal('metastructure-001-shared-services-s3-access-log');
+  });
 });
