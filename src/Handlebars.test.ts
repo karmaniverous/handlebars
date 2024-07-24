@@ -119,6 +119,7 @@ describe('Handlebars', function () {
       anchorText = "anchor text"
       merchantId = "abc123"
       userId = "def456"
+      falsy = false
       extra = {
         a = [
           1,
