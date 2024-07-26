@@ -141,4 +141,18 @@ describe('Handlebars', function () {
 
     expect(result).to.equal('metastructure-001-shared-services-s3-access-log');
   });
+
+  it('throwif true', function () {
+    const template = '{{#throwif amount "Error!"}}No Error!{{/throwif}}';
+
+    expect(() => Handlebars.compile(template)(data)).to.throw('Error!');
+  });
+
+  it('throwif false', function () {
+    const template = '{{#throwif falsy "Error!"}}No Error!{{/throwif}}';
+
+    const result = Handlebars.compile(template)(data);
+
+    expect(result).to.equal('No Error!');
+  });
 });

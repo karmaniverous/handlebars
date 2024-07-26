@@ -117,4 +117,21 @@ Handlebars.registerHelper(
   },
 );
 
+Handlebars.registerHelper(
+  'throwif',
+  function (
+    condition: boolean,
+    messageParam: string | Handlebars.HelperOptions,
+    optionsParam?: Handlebars.HelperOptions,
+  ) {
+    const message = _.isString(messageParam) ? messageParam : undefined;
+    const options = (_.isString(messageParam) ? optionsParam : messageParam)!;
+
+    if (condition) throw new Error(message);
+
+    // @ts-expect-error 'this' implicitly has type 'any' because it does not have a type annotation.
+    return options.fn(this);
+  },
+);
+
 export { Handlebars };

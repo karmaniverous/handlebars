@@ -150,3 +150,11 @@ These targets are currently available:
 | `target` | Description                                                                                     | default `delimiter` |
 | -------- | ----------------------------------------------------------------------------------------------- | ------------------- |
 | `s3`     | [S3 bucket names](https://docs.aws.amazon.com/AmazonS3/latest/userguide/bucketnamingrules.html) | `'-'`               |
+
+## throwif
+
+Checks an condition. If true, throws an error before evauating the block content. Syntax:
+
+```handlebars
+{{#throwif <condition> <message>}}No Error!{{/throwif}}
+```
