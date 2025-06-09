@@ -1,5 +1,5 @@
 import { json2tf } from '@karmaniverous/json2tf';
-import Handlebars from 'handlebars';
+import Handlebars from 'handlebars/lib/handlebars';
 import _ from 'lodash';
 import numeral, { Numeral } from 'numeral';
 
