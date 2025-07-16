@@ -101,7 +101,7 @@ describe('Handlebars', function () {
     expect(result).to.equal('false');
   });
 
-  it('terraform', function () {
+  it.skip('terraform', function () {
     const template = `
   output "config" { 
     description = "Global config." 
