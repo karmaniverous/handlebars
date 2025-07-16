@@ -1,5 +1,6 @@
 import { json2tf } from '@karmaniverous/json2tf';
 import Handlebars from 'handlebars';
+import humanizeDuration from 'humanize-duration';
 import _ from 'lodash';
 import numeral, { Numeral } from 'numeral';
 
@@ -133,5 +134,15 @@ Handlebars.registerHelper(
     return options.fn(this);
   },
 );
+
+Handlebars.registerHelper('object', function ({ hash }) {
+  return hash as object;
+});
+
+Handlebars.registerHelper('humanizeDuration', function (...args: unknown[]) {
+  return humanizeDuration(
+    ...(args.slice(0, -1) as Parameters<typeof humanizeDuration>),
+  );
+});
 
 export { Handlebars };

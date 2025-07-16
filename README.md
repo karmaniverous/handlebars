@@ -22,53 +22,37 @@ This template...
 <a data-merchantId="abc123" data-userId="xyz789">anchor text</a>
 ```
 
-## lodash & numeral
+## humanizeDuration
 
-These helpers expose the [Lodash](https://lodash.com/) and [Numeral.js](http://numeraljs.com/) libraries to your templates. Syntax:
+Renders a human-readable duration from a number of milliseconds. Syntax:
 
 ```handlebars
-{{lodash '<function>' <arg1> <arg2> ...}}
-{{numeral '<function>' <arg1> <arg2> ...}}
+{{humanizeDuration <milliseconds> [(object ...options)]}}
 ```
 
-Here's a combined example. If `amount = 1000000` then:
+For example:
 
 ```handlebars
-{{numeral 'format' (lodash 'divide' amount 100) '$0,0.00'}}
+{{humanizeDuration 1000}}
 ```
 
 renders:
 
 ```html
-$10,000.00
+1 second
 ```
 
-## params
-
-This helper converts its arguments into an array. Very useful for Lodash functions that expect an array argument. For example:
+You can also pass an `object` to customize the output. For example:
 
 ```handlebars
-{{lodash 'get' object (params 'a' 'b' 'c')}}
+{{humanizeDuration 86401000 (object conjunction=' and ' serialComma=false)}}
 ```
 
-## logic
+renders:
 
-Performs logical operations on the arguments. Syntax:
-
-```handlebars
-{{logic '<operator>' <arg1> <arg2> ...}}
+```html
+1 day and 1 second
 ```
-
-For example, all of these return `true`:
-
-```handlebars
-{{#if (logic 'and' true true true)}}
-{{#if (logic 'or' true true false)}}
-{{#if (logic 'not' false)}}:
-{{#if (logic 'xor' true false false)}} (odd number of trues)
-```
-
-Parameters are evaluated for truthiness. Supported operations are `and`, `or`, `not`, and `xor`.
 
 ## ifelse
 
@@ -127,6 +111,46 @@ console.log(Handlebars.compile(template, { noEscape: true })(data));
 */
 ```
 
+## lodash & numeral
+
+These helpers expose the [Lodash](https://lodash.com/) and [Numeral.js](http://numeraljs.com/) libraries to your templates. Syntax:
+
+```handlebars
+{{lodash '<function>' <arg1> <arg2> ...}}
+{{numeral '<function>' <arg1> <arg2> ...}}
+```
+
+Here's a combined example. If `amount = 1000000` then:
+
+```handlebars
+{{numeral 'format' (lodash 'divide' amount 100) '$0,0.00'}}
+```
+
+renders:
+
+```html
+$10,000.00
+```
+
+## logic
+
+Performs logical operations on the arguments. Syntax:
+
+```handlebars
+{{logic '<operator>' <arg1> <arg2> ...}}
+```
+
+For example, all of these return `true`:
+
+```handlebars
+{{#if (logic 'and' true true true)}}
+{{#if (logic 'or' true true false)}}
+{{#if (logic 'not' false)}}:
+{{#if (logic 'xor' true false false)}} (odd number of trues)
+```
+
+Parameters are evaluated for truthiness. Supported operations are `and`, `or`, `not`, and `xor`.
+
 ## namify
 
 Converts a string into a form valid for a particular target, substituting an optional delimiter for sequences of invalid characters. Syntax:
@@ -150,6 +174,22 @@ These targets are currently available:
 | `target` | Description                                                                                     | default `delimiter` |
 | -------- | ----------------------------------------------------------------------------------------------- | ------------------- |
 | `s3`     | [S3 bucket names](https://docs.aws.amazon.com/AmazonS3/latest/userguide/bucketnamingrules.html) | `'-'`               |
+
+## object
+
+Returns the `hash` object passed to it. This is useful for passing an object to a helper that expects an object as its first argument. Syntax:
+
+```handlebars
+{{object key1=value1 key2=value2 ...}}
+```
+
+## params
+
+This helper converts its arguments into an array. Very useful for Lodash functions that expect an array argument. For example:
+
+```handlebars
+{{lodash 'get' object (params 'a' 'b' 'c')}}
+```
 
 ## throwif
 

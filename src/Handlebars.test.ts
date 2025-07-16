@@ -16,6 +16,7 @@ describe('Handlebars', function () {
       merchantId: 'abc123',
       userId: 'def456',
       falsy: false,
+      ms: 1000,
     };
   });
 
@@ -154,5 +155,22 @@ describe('Handlebars', function () {
     const result = Handlebars.compile(template)(data);
 
     expect(result).to.equal('No Error!');
+  });
+
+  it('humanizeDuration 1s', function () {
+    const template = '{{humanizeDuration 1000}}';
+
+    const result = Handlebars.compile(template)(data);
+
+    expect(result).to.equal('1 second');
+  });
+
+  it('humanizeDuration 1d 1s', function () {
+    const template =
+      '{{humanizeDuration 86401000 (object conjunction=" and " serialComma=false)}}';
+
+    const result = Handlebars.compile(template)(data);
+
+    expect(result).to.equal('1 day and 1 second');
   });
 });
