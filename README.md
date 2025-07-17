@@ -198,3 +198,21 @@ Checks an condition. If true, throws an error before evauating the block content
 ```handlebars
 {{#throwif <condition> <message>}}No Error!{{/throwif}}
 ```
+
+## recursiveRender
+
+A helper function that recursively renders a Handlebars template until the output stabilizes or a maximum depth is reached. This is useful for templates that may contain recursive structures. Syntax:
+
+```ts
+const data = {
+  baseUrl: 'https://example.com',
+  jwt: 'abc123',
+  url: '{{baseUrl}}?jwt={{jwt}}',
+};
+
+const template = '{{url}}';
+
+const result = recursiveRender(Handlebars, template, data);
+
+console.log(result); // Outputs: https://example.com?jwt=abc123
+```

@@ -4,7 +4,7 @@
 import { expect } from 'chai';
 
 // lib imports
-import { Handlebars } from './index.js';
+import { Handlebars, recursiveRender } from './';
 
 let data: Record<string, unknown>;
 
@@ -16,7 +16,7 @@ describe('Handlebars', function () {
       merchantId: 'abc123',
       userId: 'def456',
       falsy: false,
-      ms: 1000,
+      recursive: '{{userId}}',
     };
   });
 
@@ -101,7 +101,7 @@ describe('Handlebars', function () {
     expect(result).to.equal('false');
   });
 
-  it.skip('terraform', function () {
+  it('terraform', function () {
     const template = `
   output "config" { 
     description = "Global config." 
@@ -121,6 +121,7 @@ describe('Handlebars', function () {
       merchantId = "abc123"
       userId = "def456"
       falsy = false
+      recursive = "{{userId}}"
       extra = {
         a = [
           1,
@@ -172,5 +173,13 @@ describe('Handlebars', function () {
     const result = Handlebars.compile(template)(data);
 
     expect(result).to.equal('1 day and 1 second');
+  });
+
+  it('recursiveRender', function () {
+    const template = '{{recursive}}';
+
+    const result = recursiveRender(Handlebars, template, data);
+
+    expect(result).to.equal('def456');
   });
 });

@@ -145,4 +145,6 @@ Handlebars.registerHelper('humanizeDuration', function (...args: unknown[]) {
   );
 });
 
+import './recursiveRender';
+
 export { Handlebars };
