@@ -204,6 +204,8 @@ Checks an condition. If true, throws an error before evauating the block content
 A helper function that recursively renders a Handlebars template until the output stabilizes or a maximum depth is reached. This is useful for templates that may contain recursive structures. Syntax:
 
 ```ts
+import { recursiveRender } from '@karmaniverous/handlebars';
+
 const data = {
   baseUrl: 'https://example.com',
   jwt: 'abc123',
@@ -212,7 +214,7 @@ const data = {
 
 const template = '{{url}}';
 
-const result = recursiveRender(Handlebars, template, data);
+const result = recursiveRender(template, data);
 
 console.log(result); // Outputs: https://example.com?jwt=abc123
 ```

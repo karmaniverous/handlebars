@@ -178,7 +178,7 @@ describe('Handlebars', function () {
   it('recursiveRender', function () {
     const template = '{{recursive}}';
 
-    const result = recursiveRender(Handlebars, template, data);
+    const result = recursiveRender(template, data);
 
     expect(result).to.equal('def456');
   });
